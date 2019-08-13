@@ -1,0 +1,35 @@
+.cardStyle {
+  width: 15rem;
+	height: 15rem;
+	margin-top: 1% !important;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.header {
+  flex-direction: row;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #e4dce4;
+  justify-content: space-around;
+  height: 20%;
+  padding: 2%;
+}
+.header > div {
+  flex: 1;
+}
+
+.student_details {
+  text-align: center;
+  font-size: 25px;
+}
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
