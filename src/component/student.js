@@ -134,7 +134,7 @@ class StudentDetails extends Component {
                 <div>
                   <Search
                     placeholder="input search text"
-                    onSearch={value => this.handleSearch(value)}
+                    onChange={value => this.handleSearch(value)}
                     enterButton
                     className="search"
                   />

@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend
 } from "recharts";
+import { message } from "antd";
 var value = [];
 var markValues = [];
 var index = [];
@@ -17,8 +18,8 @@ class StudentMarks extends Component {
   constructor(props) {
     super(props);
     this.state = {
-			barValue : []
-		};
+      barValue: []
+    };
   }
   componentWillMount() {
     markValues = [];
@@ -28,13 +29,18 @@ class StudentMarks extends Component {
     if (this.props.studentRecords.length === 0) {
       this.props.getStudentRecords().then(() => {
         index = this.props.location.pathname.split("/");
-        for (var key in Object.values(this.props.studentRecords[index[1]])) {
-          value.push(Object.values(this.props.studentRecords[index[1]])[key]);
+        try {
+          for (var key in Object.values(this.props.studentRecords[index[1]])) {
+            value.push(Object.values(this.props.studentRecords[index[1]])[key]);
+          }
+          for (key in value[3]) {
+            markValues.push({ key: key, marks: value[3][key] });
+          }
+          this.setState({ barValue: markValues });
+        } catch (error) {
+					message.error("Sorry We can't found Your Data");
+					this.props.history.push(`/`);
         }
-        for (key in value[3]) {
-          markValues.push({ key: key, marks: value[3][key] });
-				}
-        this.setState({ barValue : markValues });
       });
     } else {
       for (var key in Object.values(this.props.location.state.data)) {
@@ -43,7 +49,7 @@ class StudentMarks extends Component {
       for (key in value[3]) {
         markValues.push({ key: key, marks: value[3][key] });
       }
-      this.setState({ barValue : markValues });
+      this.setState({ barValue: markValues });
     }
   }
   render() {
